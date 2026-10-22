@@ -103,7 +103,7 @@ if uploaded_file is not None:
         if file_duration > MAX_DURATION_SECONDS:
             st.error(f"Audio too long ({file_duration:.0f}s). Maximum allowed duration is {MAX_DURATION_SECONDS}s.")
             st.stop()
-    except Exception:
+    except sf.LibsndfileError:
         st.error("Invalid WAV file. Please upload a valid `.wav` audio file.")
         st.stop()
 
