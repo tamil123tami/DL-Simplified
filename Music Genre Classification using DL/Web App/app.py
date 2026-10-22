@@ -11,9 +11,9 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
+import soundfile as sf
 import json
 import os
-import wave
 
 st.set_page_config(page_title="Music Genre Classifier", layout="wide")
 st.title("Music Genre Classifier")
@@ -98,14 +98,12 @@ uploaded_file = st.file_uploader("Choose a .wav file", type=["wav"])
 
 if uploaded_file is not None:
     try:
-        with wave.open(uploaded_file, "rb") as wf:
-            frames = wf.getnframes()
-            rate = wf.getframerate()
-            file_duration = frames / float(rate)
+        info = sf.info(uploaded_file)
+        file_duration = info.duration
         if file_duration > MAX_DURATION_SECONDS:
             st.error(f"Audio too long ({file_duration:.0f}s). Maximum allowed duration is {MAX_DURATION_SECONDS}s.")
             st.stop()
-    except wave.Error:
+    except Exception:
         st.error("Invalid WAV file. Please upload a valid `.wav` audio file.")
         st.stop()
 
