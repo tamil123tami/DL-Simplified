@@ -40,6 +40,10 @@ Training notebook: [https://www.kaggle.com/code/gdhdgdhdh/notebook05619fb6c2](ht
 
 Streamlit app to upload a `.wav` file, view the mel-spectrogram, and get the predicted genre with confidence scores.
 
+Before starting the app, provide `Model/genre_classifier.keras`.
+Generate it by running the final export cell in `Model/Music_Genre_Classification.ipynb`,
+or download the trained artifact from the project release.
+
 ```bash
 pip install -r requirements.txt
 streamlit run "Web App/app.py"
